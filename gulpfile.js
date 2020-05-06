@@ -1,28 +1,37 @@
-const gulp = require('gulp'),
+const {src, dest, watch} = require('gulp'),
       browserSync = require('browser-sync').create(),
-      minify = require('gulp-minify-css'),
-      rename = require('gulp-rename');
+      // minify = require('gulp-minify-css'),
+      // rename = require('gulp-rename'),
+      sass = require('gulp-sass');
 
-gulp.task('hello', (done) => {
-  console.log("Hello world");
-  done();
-});
+function bs() {
+  servSass();
+  browserSync.init({
+      server: {
+          baseDir: "./"
+      }
+  });
+  watch("./*.html").on('change', browserSync.reload);
+  watch("./js/*.js").on('change', browserSync.reload);
+  watch("./sass/**/*.sass", servSass);
+};
 
-gulp.task('browser-sync', function() {
-    browserSync.init({
-        server: {
-            baseDir: "./"
-        }
-    });
-    gulp.watch("./*.html").on('change', browserSync.reload);
-});
+function servSass() {
+  return src("./scss/*.scss")
+      .pipe(sass())
+      .pipe(dest("./css"))
+      .pipe(browserSync.stream());
+};
 
-gulp.task('minify', (done) => {
-  gulp.src('css/*.css')
-    .pipe(minify({keepBreaks: true}))
-    .pipe(rename({
-      suffix: '.min'
-    }))
-    .pipe(gulp.dest('css/'));
-    done();
-});
+exports.serve = bs;
+
+// function minRename() {
+//   src('css/*.css')
+//     .pipe(minify({keepBreaks: true}))
+//     .pipe(rename({
+//       suffix: '.min'
+//     }))
+//     .pipe(dest('css/'));
+//     done();
+// };
+
