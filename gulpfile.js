@@ -19,7 +19,7 @@ function bs() {
 };
 
 function servSass() {
-  return src("./sass/**/.sass", "./sass/**/*.scss")
+  return src("./sass/**/*.sass", "./sass/**/*.scss")
       .pipe(sass())
       .pipe(autoprefixer({
         cascade: false
