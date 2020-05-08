@@ -334,7 +334,7 @@ template {
   box-sizing: border-box; }
 
 body {
-  font-family: 'Futura Book';
+  font-family: 'Futura Book', sans-serif;
   font-size: 14px; }
 
 .section-title {
@@ -359,7 +359,8 @@ body {
   width: 100%;
   z-index: 99;
   background-color: #131313;
-  padding: 24px 0; }
+  padding: 24px 0;
+  font-family: 'Futura Demi', sans-serif; }
 
 .menu {
   display: flex;
@@ -375,7 +376,8 @@ body {
   color: #ffffff;
   text-transform: uppercase;
   margin-right: 40px;
-  transition: 0.2s; }
+  transition: 0.2s;
+  font-family: 'Futura Book', sans-serif; }
   .nav__item:hover {
     color: #E3B873; }
 
@@ -403,6 +405,7 @@ body {
     height: 100%;
     background-color: rgba(19, 19, 19, 0.7); }
   .hero__instagram {
+    font-family: 'Futura Demi', sans-serif;
     position: absolute;
     left: 0;
     top: 0;
@@ -418,6 +421,8 @@ body {
     min-width: 247px;
     min-height: 97px;
     background-color: #131313;
+    font-family: 'Yeseva One', cursive;
+    font-weight: 400;
     text-transform: uppercase;
     color: #ffffff;
     text-decoration: none; }
@@ -461,6 +466,7 @@ body {
 .title {
   margin: 0;
   font-family: 'Yeseva One', cursive;
+  font-weight: 400;
   text-transform: uppercase;
   font-size: 40px; }
   .title--primary {
@@ -470,6 +476,7 @@ body {
   padding: 11px 20px;
   border: none;
   border-radius: 2px;
+  font-family: 'Futura Demi';
   text-transform: uppercase; }
   .button--primary {
     background-color: #E3B873;
