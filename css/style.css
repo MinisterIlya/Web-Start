@@ -12,6 +12,13 @@
   font-style: normal;
   font-display: wrap; }
 
+@font-face {
+  font-family: 'Futura Medium';
+  src: url("../fonts/futura/FuturaMediumC.woff") format("woff"), url("../fonts/futura/FuturaMediumC.woff2") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: wrap; }
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -460,7 +467,7 @@ body {
     color: #E3B873; }
 
 .button {
-  padding: 13px 20px;
+  padding: 11px 20px;
   border: none;
   border-radius: 2px;
   text-transform: uppercase; }
@@ -477,3 +484,7 @@ body {
     color: #ffffff; }
   .button:hover {
     cursor: pointer; }
+
+.hero__button {
+  width: 207px;
+  height: 51px; }
