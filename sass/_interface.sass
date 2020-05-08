@@ -6,7 +6,13 @@
   &--primary
     background-color: $primary
     color: $light
+    box-shadow: 0px 5px 15px rgba($primary, 0.2);
+    transition: box-shadow 0.2s
+    &:hover
+      box-shadow: none
   &--outline
     border: 1px solid $light
     background-color: transparent
     color: $light
+  &:hover
+    cursor: pointer
