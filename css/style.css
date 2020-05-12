@@ -537,16 +537,26 @@ img {
   text-transform: uppercase;
   background-color: #E3B873;
   color: #ffffff;
-  padding: 1.214rem 2.6rem; }
+  padding: 1.214rem 2.6rem;
+  box-shadow: 5px 5px 10px rgba(227, 184, 115, 0.1); }
 
-@media screen and (max-width: 760px) {
-  .row {
-    flex-direction: column;
-    align-items: center; }
-  .types__card {
-    margin-bottom: 5rem; }
-  .card__text {
-    margin-left: 0; } }
+.design__section-title {
+  margin-bottom: 2rem; }
+
+.description {
+  display: inline-block;
+  font-size: 1.428rem;
+  line-height: 1.928rem;
+  text-transform: none;
+  font-family: 'Futura Book', sans-serif; }
+
+.section-title__description {
+  width: 52.928rem;
+  text-align: center; }
+
+.card__pricetag {
+  min-width: 16.286rem;
+  height: 3.857rem; }
 
 .button {
   padding: 11px 20px;
@@ -589,6 +599,27 @@ img {
     margin-left: 0; }
   .nav {
     display: none; } }
+
+@media screen and (max-width: 760px) {
+  .row {
+    flex-direction: column;
+    align-items: center; }
+  .types__card,
+  .design__card {
+    margin-bottom: 5rem; }
+  .card__text {
+    margin-left: 0; }
+  .design {
+    background-color: #131313; }
+    .design__section-title {
+      color: #ffffff; }
+  .section-title__description {
+    margin: auto;
+    margin-top: 1.64rem;
+    width: 80%;
+    min-width: 25.5rem;
+    font-size: 1.07rem;
+    line-height: 135.84%; } }
 
 @media screen and (max-width: 576px) {
   .contacts__button {
