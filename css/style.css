@@ -516,6 +516,7 @@ img {
 
 .card__title {
   font-family: 'Yeseva One', cursive;
+  font-weight: 400;
   font-size: 1.29rem;
   margin-top: 0;
   margin-bottom: 0.7rem; }
@@ -534,6 +535,7 @@ img {
   bottom: -1.79rem;
   font-size: 1.29rem;
   font-family: 'Yeseva One', cursive;
+  font-weight: 400;
   text-transform: uppercase;
   background-color: #E3B873;
   color: #ffffff;
@@ -599,6 +601,10 @@ img {
     margin-left: 0; }
   .nav {
     display: none; } }
+
+@media screen and (max-width: 890px) {
+  .card__title {
+    width: 10.714rem; } }
 
 @media screen and (max-width: 760px) {
   .row {
