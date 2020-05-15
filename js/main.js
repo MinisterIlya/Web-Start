@@ -48,6 +48,20 @@ $(document).ready(function () {
     pagination: {
       el: '.swiper-pagination',
       type: 'bullets',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+
+  var mySecondSwiper = new Swiper ('.swiper-container', {
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination-digit',
+      type: 'fraction',
+      clickable: true,
     },
     navigation: {
       nextEl: '.swiper-button-next',
@@ -57,9 +71,14 @@ $(document).ready(function () {
 
   let next = $('.swiper-button-next'),
       prev = $('.swiper-button-prev'),
-      bullets = $('.swiper-pagination');
+      bullets = $('.swiper-pagination'),
+      nextSecond = $('.swiper-button-next--second'),
+      bulletsSecond = $('.swiper-pagination--second');
 
   next.css('left', prev.width() + bullets.width() + 20);
   bullets.css('left', prev.width() + 10);
+
+  nextSecond.css('left', prev.width() + bulletsSecond.width() + 20);
+  bulletsSecond.css('left', prev.width() + 10);
   
 });
