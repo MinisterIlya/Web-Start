@@ -10,9 +10,9 @@ $(document).ready(function () {
   $(window).scroll(function() {
     if ($(window).width() > 960) {
       if ($(this).scrollTop() > 100) {
-        $('.scrollup').fadeIn();
+        $('.scrollup').slideDown().fadeIn();
       } else {
-        $('.scrollup').fadeOut();
+        $('.scrollup').slideUp().fadeOut();
       }
     } else {
       $('.scrollup').css('display', 'none')

@@ -10,8 +10,16 @@
         &::after
           margin-left: 6.07rem
   .swiper
+    &-container
+      &-image
+        margin-top: 3.142rem
     &-slide
       margin-bottom: 4.357rem
+      &-image
+        width: 54.64rem
+        height: 22.64rem
+      &__word
+        display: block
       &__text
         flex-basis: 60%
         font-size: 1.071rem
@@ -22,4 +30,35 @@
         font-weight: 400
         font-size: 1.286rem
         line-height: 25px
-        letter-spacing: -1.5px
+  .list
+    padding: 0
+    margin-top: 6.5rem
+    list-style: none
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    &__item
+      flex-basis: 30%
+      opacity: 0.3
+      cursor: pointer
+      transition: 0.3s
+      &:hover
+        opacity: 1
+      &--active
+        opacity: 1
+    &__number
+      margin: 0
+      display: inline-block
+      font-family: 'Yeseva One', cursive
+      font-size: 1.071rem
+      line-height: 1.5rem
+      font-weight: 400
+      border-bottom: 1px solid $primary
+    &__description
+      margin: 0
+      margin-top: 1.214rem
+      margin-bottom: 2.57rem
+      font-size: 1.071rem
+      line-height: 1.288rem
+    &__word
+      display: block
