@@ -62,14 +62,52 @@
           display: none
   .steps
     display: none
+  .control
+    background-color: $dark
+    color: $light
+    &__input
+      border-bottom: 1px solid $light
+      &::placeholder
+        color: $light
+    &__label
+      color: rgba($light, 0.5)
 
 @media screen and ( max-height: 600px )
   .hero
+    &::after
+      display: none
     &__scroll-down
       display: none
 
+@media screen and ( max-width: 600px )
+  .button
+    border-radius: 0   
+  .control
+    padding-bottom: 0
+    &__button
+      order: 1
+      display: block
+      font-size: 15px
+      position: relative
+      bottom: -2rem
+    &__form
+      display: flex
+      flex-direction: column
+    &__input
+      font-size: 1.25rem
+      &:placeholder
+        font-size: 1.5rem
+        line-height: 138%
+    &__input-group:first-of-type
+      margin-bottom: 4.5rem
+    &__policy-label
+      font-size: 1.33rem
+      margin-top: 1.857rem
+      margin-bottom: 7.785rem
+      justify-content: flex-start
 @media screen and ( max-width: 576px )
   .contacts
+    position: relative
     &__button
       display: none
     &__phone
@@ -77,6 +115,8 @@
       color: $light
       border: none
   .hero
+    &::after
+      display: none
     .title
       font-size: 1.64rem
     &__text
@@ -95,5 +135,6 @@
       &__text
         &:nth-child(n)
           flex-basis: 50%
+
     
   
