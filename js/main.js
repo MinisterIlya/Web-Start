@@ -55,6 +55,18 @@ $(document).ready(function () {
       prevEl: '.swiper-button-prev',
     },
   });
+  var mySecondSwiper = new Swiper ('.swiper-container__steps', {
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination__steps',
+      type: 'bullets',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next--second',
+      prevEl: '.swiper-button-prev--second',
+    },
+  });
 
   let next = $('.swiper-button-next'),
       prev = $('.swiper-button-prev'),
@@ -70,14 +82,10 @@ $(document).ready(function () {
   
 
   let slideIndex = 1,
-      cardIndex = 1,
       slides = $('.swiper-slide-item'),
       prevSecond = $('.swiper-button-prev--second'),
       dots = $('.swiper-pagination-bullet'),
-      listItem = $('.list__item'),
-      listNumber = $('.list__number'),
-      listDescription = $('.list__description'),
-      listWord = $('.list__word');
+      listItem = $('.list__item');
 
   prevSecond.on('click', () => {
     $('.list__item--active').toggleClass('list__item--active');
@@ -88,9 +96,9 @@ $(document).ready(function () {
     plusSlides(1);
   });
   bulletsSecond.on('click', (event) => {
-    $('.list__item--active').toggleClass('list__item--active');
     for (let i = 6; i < dots.length; i++) {
       if (event.target == dots[i] && $(event.target).hasClass('swiper-pagination-bullet')) {
+        $('.list__item--active').toggleClass('list__item--active');
         currentSlide(i - 5);
       }
     }
@@ -111,27 +119,54 @@ $(document).ready(function () {
     showCard(slideIndex += n);
   };
 
+  listItem.on('click', function () {
+    
+    var index = $(this).attr('data-index');
 
-
-  function showSlide(n) {
-
-  }
-
-  console.log(listItem[0])
-
-  listItem.on('click', function (event) {
-    event.preventDefault();
     $('.list__item--active').toggleClass('list__item--active');
     $(this).toggleClass('list__item--active');
-    for (let j = 0; j < listItem.length; j++) {
-      if (event.target == listItem[j] || event.target == listNumber[j] || event.target == listDescription[j] 
-        || event.target == listWord[j]) {
-        cardIndex = j;
+    swipeSlide(index);
+  });
+
+  function swipeSlide(n) {
+    $('.steps .swiper-pagination-bullets span').each(function(index){
+        if(index == n-1){
+          $(this).click()
+        }
+      })
+    }
+
+  new WOW().init();
+
+  // Валидация формы
+
+  $('.modal__form').validate({
+    errorClass: "invalid",
+    rules: {
+      userName: {
+        required: true,
+        minlength: 2,
+      },
+      userPhone: "required",
+      userEmail: {
+        required: true,
+        email: true
+      }
+    },
+    messages: {
+      userName: {
+        required: "Имя обязательно",
+        minlength: "Имя не должно быть короче двух букв"
+      }, 
+      userPhone: "Телефон обязателен",
+      userEmail: {
+        required: "Обязательно укажите email",
+        email: "Введите в формате: name@domain.com"
       }
     }
   });
-  
-  //! swiper-slide-active
 
-  new WOW().init();
+  // Маска для номера телефона
+
+  $('[type=tel]').mask('+7(000) 00-00-000', {placeholder: "+7 (__) __-__-___"});
 });

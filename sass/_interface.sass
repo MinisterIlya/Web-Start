@@ -32,11 +32,15 @@
   border: none
   border-bottom: 1px solid rgba(54, 54, 54, 0.3);
   font-size: 1.285rem
-  color: $light
   padding: 0.5rem 0
   &--light
+    color: $light
     &::placeholder
       color: $light
+  &--dark
+    color: $dark
+    &::placeholder
+      color: $dark
 .policy
   &__checkbox
     opacity: 0
@@ -48,6 +52,7 @@
   &__label
     display: flex
     align-items: center
+    font-size: 1.142rem
     &::before
       content: ''
       width: 18px
@@ -56,6 +61,8 @@
       border-radius: 1px
       cursor: pointer
       margin-right: 0.64rem
+    &--center
+      justify-content: center
 .scrollup
   width: 40px
   height: 40px
@@ -68,3 +75,9 @@
   transition: 0.5s
   &:hover
     opacity: 0.7
+label
+  &.invalid
+    color: tomato
+input
+  &.invalid
+    border-bottom: 1px solid tomato
