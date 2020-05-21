@@ -152,14 +152,14 @@ $(document).ready(function () {
         $(".policy__label").css("color", "tomato");
       }
     },
-    unhighlight: function(element) {
-      $(element).css('border-bottom-color', 'rgba(255, 255, 255, 0.15)');
-      if ($(element).attr("type") == "checkbox") {
-        $(".policy__label").css("color", "white");
-        $(".control__policy-label").css("color", "black");
-        $('.policy__checkbox').attr("checked", "checked");
-      }
-    },
+    // unhighlight: function(element) {
+    //   $(element).css('border-bottom-color', 'rgba(255, 255, 255, 0.15)');
+    //   if ($(element).attr("type") == "checkbox") {
+    //     $(".policy__label").css("color", "white");
+    //     $(".control__policy-label").css("color", "black");
+    //     $('.policy__checkbox').attr("checked", "checked");
+    //   }
+    // },
     rules: {
       policyCheckbox: {
         required: true,
