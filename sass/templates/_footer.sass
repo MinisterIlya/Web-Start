@@ -1,8 +1,10 @@
 .footer
+  display: flex
+  flex-direction: column
   padding-top: 3rem
   background: $black url('../img/footer-bg.jpg') center no-repeat
   &__wrap
-    background-color: $black
+    background: $black url('../img/bg-lines-footer.svg') no-repeat center
     max-width: 63.07rem
     margin: auto
     margin-top: -20rem
@@ -42,6 +44,41 @@
   &__menu
     background-color: $dark
     padding: 4.285rem 0
+  &__map
+    margin: auto
+    margin-bottom: 4rem
+    width: 90%
+    height: 33.214rem
+  &__text
+    margin: auto
+    text-transform: uppercase
+    color: $primary
+    font-family: 'Yeseva One', cursive
+    font-weight: 400
+    font-style: normal
+    font-size: 1.428rem
+    line-height: 2rem
+    text-align: center
+    max-width: 500px
+  &__links
+    margin-top: 1.857rem
+    display: flex
+    justify-content: center
+    align-items: center
+  &__item
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 28px
+    height: 28px
+    background-color: $primary
+    border-radius: 50%
+    cursor: pointer
+    margin-right: 1rem
+    margin-bottom: 3.071rem
+  &__content
+    display: flex
+    flex-direction: column
   .policy
     &__label
       justify-content: center

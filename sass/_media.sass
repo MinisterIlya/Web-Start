@@ -5,6 +5,13 @@
   .nav
     &__item
       margin-right: 1rem
+@media screen and ( max-width: 1100px )
+  .customers
+    .days,
+    .area
+      &__text
+        font-size: 1rem
+  
 @media screen and ( max-width: 992px )
   .hero
     &__instagram
@@ -13,6 +20,12 @@
       margin-left: 0
   .nav
     display: none
+  .customers
+    .parameters
+      flex-direction: column
+      .area
+        margin: 0
+        margin-bottom: 2px
 @media screen and ( max-width: 890px )
   .card
     &__title
@@ -33,6 +46,8 @@
     .card
       &__text
         width: 19.42rem
+  .customers
+    display: none
   .row
     flex-direction: column
     align-items: center
@@ -82,6 +97,10 @@
         color: $light
     &__label
       color: rgba($light, 0.5)
+  .footer
+    &__wrap
+      margin-top: 0
+    
 
 @media screen and ( max-height: 600px )
   .hero
@@ -125,12 +144,17 @@
       border-bottom: 1px solid $light
       &-group
         flex-basis: 100%
+    &__address
+      order: 1
+    &__phone
+      display: block
     .menu
       display: none
     .policy
       &__label
         justify-content: flex-start
         font-size: 1.33rem
+
 @media screen and ( max-width: 576px )
   .contacts
     position: relative

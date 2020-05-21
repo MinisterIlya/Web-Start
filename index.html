@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
   <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=4aa2a757-4b0b-4288-9563-b4b38f69776f&lang=ru_RU" type="text/javascript">
+  </script>
   <title>Project</title>
 </head>
 <body>
@@ -41,7 +43,7 @@
           <h1 class="title hero__title wow animate__animated animate__fadeInRight" data-wow-delay="0.1s">Турецкий ремонт в&nbsp;<span class="title--primary">Ростове-на-дону</span></h1>
           <p class="hero__text wow animate__animated animate__fadeInRight" data-wow-delay="0.3s">Получите готовый ремонт под ключ в срок с экономией рабочего времени до 45 дней и 20% от стоимости материалов за счет организации работы</p>
           <button class="button hero__button button--primary wow animate__animated animate__fadeInRight" data-wow-delay="0.5s" data-toggle="modal">Рассчитать стоимость</button>
-          <button class="button hero__button button--outline wow animate__animated animate__fadeInRight" data-wow-delay="0.5s">Отправить заявку</button>
+          <button class="button hero__button button--outline wow animate__animated animate__fadeInRight" data-wow-delay="0.5s" data-toggle="modal">Отправить заявку</button>
         </div>
       </div>
       <!-- /.container -->
@@ -658,6 +660,103 @@
 
       </div>
     </section>
+    <section class="section customers">
+      <div class="container">
+        <div class="section-title customers__section-title">
+          <h2 class="section-title__heading">Наша клиенты</h2>
+          <div class="section-title__image">
+            <img src="../img/customers.svg" alt="">
+          </div>
+          <p class="description section-title__description">
+            80% наших клиентов рекомендуют нас своим знакомым и друзьям
+          </p>
+        </div>
+        <div class="row">
+          <div class="col-30">
+            <div class="card customers__card">
+              <div class="card__text">
+                <div class="card__title">
+                  <img src="../img/customers/customer-1.jpg" alt="" class="card__img">
+                  <h2 class="card__name">Савельева Екатерина Львовна</h2>
+                </div>
+                <div class="feedback card__feadback">
+                  <p class="feadback__text">
+                    Я хочу поблагодарить ребят за их работу. Они вложили душу в ремонт. Я очень благодарна, что сделали как для самих себя. Большое спасибо, я выражаю проектному менеджеру за его профессионализм и подход. Процесс ремонта был завершен быстрее, чем ожидалось. Команда мобильная и профессиональная. Работы выполнены качественно без нареканий. Цены демократические. Я рекомендую этих мастеров.
+                  </p>
+                  <div class="parameters card__parameters">
+                    <div class="area card__area">
+                      <img src="../img/customers/area.svg" alt="">
+                      <h2 class="area__text">
+                        40 м<span class="area__text--sup">2</span>
+                      </h2>
+                    </div>
+                    <div class="days card__days">
+                      <img src="../img/customers/days.svg" alt="">
+                      <h2 class="days__text">48 дней</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          <div class="col-30">
+            <div class="card customers__card">
+              <div class="card__text">
+                <div class="card__title">
+                  <img src="../img/customers/customer-2.jpg" alt="" class="card__img">
+                  <h2 class="card__name">Большов Михаил Анатольевич</h2>
+                </div>
+                <div class="feedback card__feadback">
+                  <p class="feadback__text">
+                    Я хочу поблагодарить ребят за их работу. Они вложили душу в ремонт. Я очень благодарна, что сделали как для самих себя. Большое спасибо, я выражаю проектному менеджеру за его профессионализм и подход. Процесс ремонта был завершен быстрее, чем ожидалось. Команда мобильная и профессиональная. Работы выполнены качественно без нареканий. Цены демократические. Я рекомендую этих мастеров.
+                  </p>
+                  <div class="parameters card__parameters">
+                    <div class="area card__area">
+                      <img src="../img/customers/area.svg" alt="">
+                      <h2 class="area__text">
+                        90 м<span class="area__text--sup">2</span>
+                      </h2>
+                    </div>
+                    <div class="days card__days">
+                      <img src="../img/customers/days.svg" alt="">
+                      <h2 class="days__text">128 дней</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-30">
+            <div class="card customers__card">
+              <div class="card__text">
+                <div class="card__title">
+                  <img src="../img/customers/customer-3.jpg" alt="" class="card__img">
+                  <h2 class="card__name">Хасанов Даниил Муратович</h2>
+                </div>
+                <div class="feedback card__feadback">
+                  <p class="feadback__text">
+                    Я хочу поблагодарить ребят за их работу. Они вложили душу в ремонт. Я очень благодарна, что сделали как для самих себя. Большое спасибо, я выражаю проектному менеджеру за его профессионализм и подход. Процесс ремонта был завершен быстрее, чем ожидалось. Команда мобильная и профессиональная. Работы выполнены качественно без нареканий. Цены демократические. Я рекомендую этих мастеров.
+                  </p>
+                  <div class="parameters card__parameters">
+                    <div class="area card__area">
+                      <img src="../img/customers/area.svg" alt="">
+                      <h2 class="area__text">
+                        56 м<span class="area__text--sup">2</span>
+                      </h2>
+                    </div>
+                    <div class="days card__days">
+                      <img src="../img/customers/days.svg" alt="">
+                      <h2 class="days__text">86 дней</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <!-- /.section cutomers -->
   </main>
   <footer class="footer section--dark">
     <div class="container">
@@ -683,13 +782,28 @@
             </div>
           </div>
           <div class="policy footer__policy">
-            <input type="checkbox" name="policy-checkbox" id="footer__policy-checkbox" class="policy__checkbox" checked>
+            <input type="checkbox" name="policyCheckbox" id="footer__policy-checkbox" class="policy__checkbox" checked>
             <label for="footer__policy-checkbox" class="policy__label">я соглашаюсь с обработкой данных</label>
             <!-- /.policy -->
           </div>
           <button class="button button--primary footer__button">Отправить</button>
         </form>
       </div>
+      <div class="footer__content">
+        <div class="address footer__address">
+          <div class="container">
+            <div class="text footer__text">Ростов на дону, Торговый центр Plaza
+              Прямой телефон <span class="footer__phone">+7 (999) 768 32 99</span></div>
+          </div>
+          <div class="links footer__links">
+            <div class="item links__item footer__item" data-toggle="modal"><img src="../img/mail.svg" alt="" class="footer__img"></div>
+            <div class="item links__item footer__item"><img src="../img/instagram.svg" alt="" class="footer__img"></div>
+          </div>
+        </div>
+        <div class="map footer__map" id="map"></div>
+        <!-- /.map footer__map -->
+      </div>
+     
     </div>
     <!-- /.container -->
     <div class="footer__menu">
@@ -732,15 +846,15 @@
             <input type="tel" name="modalUserPhone" class="input form__input modal__input input--light" id="modal__user-phone" placeholder="Ваш номер телефона:">
           </div>
         </div>
-        <div class="input-group modal__input-group">
+        <div class="input-group modal__input-group modal__input-group--last">
           <label for="modal__user-email" class="label form__lable label--light"`>Email</label>
           <div class="input-section">
             <input type="email" name="modalUserEmail" class="input form__input modal__input input--light" id="modal__user-email" placeholder="Ваш email">
           </div>
         </div>
         <div class="policy modal__policy">
-          <input type="checkbox" name="policy-checkbox" id="modal__policy-checkbox" class="policy__checkbox" checked>
-          <label for="modal__policy-checkbox" class="policy__label">я соглашаюсь с обработкой данных</label>
+          <input type="checkbox" name="policyCheckbox" id="modal__policy-checkbox" class="policy__checkbox" >
+          <label for="modal__policy-checkbox" class="policy__label policy__label">я соглашаюсь с обработкой данных</label>
         </div>
         <!-- /.policy -->
         <button class="button button--primary modal__button">Отправить заявку</button>

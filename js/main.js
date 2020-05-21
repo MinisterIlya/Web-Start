@@ -140,10 +140,30 @@ $(document).ready(function () {
 
   // Валидация формы
 
+
+
   $('.modal__form').validate({
     errorClass: "invalid",
+    validClass: "success",
     errorElement: "div",
+    highlight: function(element) {
+      $(element).css('border-bottom-color', 'tomato');
+      if ($(element).attr("type") == "checkbox") {
+        $(".policy__label").css("color", "tomato");
+      }
+    },
+    unhighlight: function(element) {
+      $(element).css('border-bottom-color', 'rgba(255, 255, 255, 0.15)');
+      if ($(element).attr("type") == "checkbox") {
+        $(".policy__label").css("color", "white");
+        $(".control__policy-label").css("color", "black");
+        $('.policy__checkbox').attr("checked", "checked");
+      }
+    },
     rules: {
+      policyCheckbox: {
+        required: true,
+      },
       modalUserName: {
         required: true,
         minlength: 2,
@@ -151,14 +171,15 @@ $(document).ready(function () {
       },
       modalUserPhone: {
         required: true,
-        minlength: 17,
+        minlength: 16,
       },
       modalUserEmail: {
         required: true,
-        email: true
+        email: true,
       }
     },
     messages: {
+      policyCheckbox: "",
       modalUserName: {
         required: "Заполните поле",
         minlength: "Имя не должно быть короче 2 букв",
@@ -171,9 +192,17 @@ $(document).ready(function () {
       }
     }
   });
+  // $("#policyCheckbox-error").css("display", "none");
+
   $('.footer__form').validate({
     errorClass: "invalid",
     errorElement: "div",
+    highlight: function(element, invalid) {
+      $(element).css('border-bottom-color', 'tomato');
+    },
+    policyCheckbox: {
+      required: true
+    },
     rules: {
       footerUserName: {
         required: true,
@@ -182,13 +211,16 @@ $(document).ready(function () {
       },
       footerUserPhone: {
         required: true,
-        minlength: 17,
+        minlength: 16,
       },
       footerQuestion: {
         required: true,
       }
     },
     messages: {
+      policyCheckbox: {
+        required: "Согласитесь с обработкой персональных данных",
+      },
       footerUserName: {
         required: "Заполните поле",
         minlength: "Имя не должно быть короче 2 букв",
@@ -203,6 +235,9 @@ $(document).ready(function () {
   $('.control__form').validate({
     errorClass: "invalid",
     errorElement: "div",
+    highlight: function(element, invalid) {
+      $(element).css('border-bottom-color', 'tomato');
+    },
     rules: {
       controlUserName: {
         required: true,
@@ -211,7 +246,7 @@ $(document).ready(function () {
       },
       controlUserPhone: {
         required: true,
-        minlength: 17,
+        minlength: 16,
       },
     },
     messages: {
@@ -226,7 +261,42 @@ $(document).ready(function () {
 
   // Маска для номера телефона
 
-  $('[type=tel]').mask('+7(000) 000-00-00', {placeholder: "+7 (__) ___-__-__"});
+  $('[type=tel]').mask('+7(000) 00-00-00', {placeholder: "+7 (__) __-__-__"});
+
+  // Создаем карту
+
+  ymaps.ready(init);
+  function init(){
+    var myMap = new ymaps.Map('map', {
+      center: [55.781986, 49.124811],
+      zoom: 15
+  }, {
+      searchControlProvider: 'yandex#search'
+  }),
+
+  // Создаём макет содержимого.
+  MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+      '<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+  ),
+
+  myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+      hintContent: 'Наш офис',
+      balloonContent: 'Вход со двора'
+  }, {
+      // Опции.
+      // Необходимо указать данный тип макета.
+      iconLayout: 'default#image',
+      // Своё изображение иконки метки.
+      iconImageHref: 'img/map-marker.png',
+      // Размеры метки.
+      iconImageSize: [32, 32],
+      // Смещение левого верхнего угла иконки относительно
+      // её "ножки" (точки привязки).
+      iconImageOffset: [-5, -38]
+  })
 
 
+myMap.geoObjects
+  .add(myPlacemark)
+  }
 });
