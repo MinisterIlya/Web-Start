@@ -28,19 +28,27 @@
 $(document).ready(function () {
   let modal = $('.modal'),
       modalBtn = $('[data-toggle=modal]'),
-      closeBtn = $('.modal__close');
+      closeBtn = $('.modal__close'),
+      thanksModal = $('.thanks-modal');
 
   modalBtn.on('click', function() {
     modal.toggleClass('modal--visible');
   });
   closeBtn.on('click', function() {
-    modal.toggleClass('modal--visible');
+    modal.removeClass('modal--visible');
+    thanksModal.removeClass('thanks-modal--visible');
   });
   $(document).on('keyup', function(key) {
-    if (key.keyCode === 27) modal.removeClass('modal--visible');
+    if (key.keyCode === 27) {
+      modal.removeClass('modal--visible')
+      thanksModal.removeClass('thanks-modal--visible')
+    };
   });
   $(modal).on('click', function(event) {
     if(event.target == this) modal.removeClass('modal--visible');
+  });
+  $(thanksModal).on('click', function(event) {
+    if(event.target == this) thanksModal.removeClass('thanks-modal--visible');
   });
 
   var mySwiper = new Swiper ('.swiper-container', {
@@ -130,7 +138,7 @@ $(document).ready(function () {
 
   function swipeSlide(n) {
     $('.steps .swiper-pagination-bullets span').each(function(index){
-        if(index == n-1){
+        if(index == n - 1){
           $(this).click()
         }
       })
@@ -139,27 +147,31 @@ $(document).ready(function () {
   new WOW().init();
 
   // Валидация формы
-
-
+  $("#policyCheckbox-error").addClass("invalid__checkbox");
 
   $('.modal__form').validate({
     errorClass: "invalid",
     validClass: "success",
-    errorElement: "div",
+    errorElement: "div",  
     highlight: function(element) {
-      $(element).css('border-bottom-color', 'tomato');
-      if ($(element).attr("type") == "checkbox") {
-        $(".policy__label").css("color", "tomato");
+      $(element).addClass("invalid__input");
+      if ("checkbox" == $(element).attr("type")) {
+        $("#modal__policy-label").addClass("invalid__checkbox");
       }
     },
-    // unhighlight: function(element) {
-    //   $(element).css('border-bottom-color', 'rgba(255, 255, 255, 0.15)');
-    //   if ($(element).attr("type") == "checkbox") {
-    //     $(".policy__label").css("color", "white");
-    //     $(".control__policy-label").css("color", "black");
-    //     $('.policy__checkbox').attr("checked", "checked");
-    //   }
-    // },
+    unhighlight: function(element) {
+      $(element).removeClass("invalid__input");
+      if ("checkbox" == $(element).attr("type")) {
+        $("#modal__policy-label").removeClass("invalid__checkbox");
+      }
+    },
+    errorPlacement: function(even, types) {
+      if ("checkbox" == types.attr("type")) {
+        types.next("label").append(even);
+      } else {
+        even.insertAfter($(types))
+      }
+    },
     rules: {
       policyCheckbox: {
         required: true,
@@ -190,20 +202,47 @@ $(document).ready(function () {
         required: "Обязательно укажите email",
         email: "Введите в формате: name@domain.com"
       }
+    },
+    submitHandler: function(form) {
+      $.ajax({
+        type: "POST",
+        url: "send.php",
+        data: $(form).serialize(),
+        success: function (response) {
+          $("form")[2].reset();
+          modal.removeClass('modal--visible');
+          thanksModal.addClass('thanks-modal--visible');       
+        }
+      });
     }
   });
-  // $("#policyCheckbox-error").css("display", "none");
-
   $('.footer__form').validate({
     errorClass: "invalid",
-    errorElement: "div",
-    highlight: function(element, invalid) {
-      $(element).css('border-bottom-color', 'tomato');
+    validClass: "success",
+    errorElement: "div",  
+    highlight: function(element) {
+      $(element).addClass("invalid__input");
+      if ("checkbox" == $(element).attr("type")) {
+        $("#footer__policy-label").addClass("invalid__checkbox");
+      }
     },
-    policyCheckbox: {
-      required: true
+    unhighlight: function(element) {
+      $(element).removeClass("invalid__input");
+      if ("checkbox" == $(element).attr("type")) {
+        $("#footer__policy-label").removeClass("invalid__checkbox");
+      }
+    },
+    errorPlacement: function(even, types) {
+      if ("checkbox" == types.attr("type")) {
+        types.next("label").append(even);
+      } else {
+        even.insertAfter($(types))
+      }
     },
     rules: {
+      footerPolicyCheckbox: {
+        required: true,
+      },
       footerUserName: {
         required: true,
         minlength: 2,
@@ -218,9 +257,7 @@ $(document).ready(function () {
       }
     },
     messages: {
-      policyCheckbox: {
-        required: "Согласитесь с обработкой персональных данных",
-      },
+      footerPolicyCheckbox: "",
       footerUserName: {
         required: "Заполните поле",
         minlength: "Имя не должно быть короче 2 букв",
@@ -230,15 +267,45 @@ $(document).ready(function () {
       footerQuestion: {
         required: "Укажите интересующий вас вопрос",
       }
+    },
+    submitHandler: function(form) {
+      $.ajax({
+        type: "POST",
+        url: "footer.php",
+        data: $(form).serialize(),
+        success: function (response) {
+          $("form")[1].reset();
+          thanksModal.addClass('thanks-modal--visible');       
+        }
+      });
     }
   });
   $('.control__form').validate({
     errorClass: "invalid",
     errorElement: "div",
-    highlight: function(element, invalid) {
-      $(element).css('border-bottom-color', 'tomato');
+    highlight: function(element) {
+      $(element).addClass("invalid__input");
+      if ($(element).attr("type") == "checkbox") {
+        $("#control__policy-label").addClass("invalid__checkbox");
+      }
+    },
+    unhighlight: function(element) {
+      $(element).removeClass("invalid__input");
+      if ($(element).attr("type") == "checkbox") {
+        $("#control__policy-label").removeClass("invalid__checkbox");
+      }
+    },
+    errorPlacement: function(even, types) {
+      if ("checkbox" == types.attr("type")) {
+        return types.next("label").append(even);
+      } else {
+        even.insertAfter($(types))
+      }
     },
     rules: {
+      controlPolicyCheckbox: {
+        required: true
+      },
       controlUserName: {
         required: true,
         minlength: 2,
@@ -250,53 +317,164 @@ $(document).ready(function () {
       },
     },
     messages: {
+      controlPolicyCheckbox: {
+        required: ""
+      },
       controlUserName: {
         required: "Заполните поле",
         minlength: "Имя не должно быть короче 2 букв",
         maxlength: "Имя не должно быть длинее 15 букв"
       }, 
       controlUserPhone: "Заполните поле",
+    },
+    submitHandler: function(form) {
+      $.ajax({
+        type: "POST",
+        url: "control.php",
+        data: $(form).serialize(),
+        success: function (response) {
+          $("form")[0].reset();
+          thanksModal.addClass('thanks-modal--visible');       
+        }
+      });
     }
   });
-
   // Маска для номера телефона
 
-  $('[type=tel]').mask('+7(000) 00-00-00', {placeholder: "+7 (__) __-__-__"});
+  $('[type=tel]').mask('+7(000) 00-00-00', {placeholder: "Ваш номер телефона:"});
 
   // Создаем карту
 
-  ymaps.ready(init);
-  function init(){
-    var myMap = new ymaps.Map('map', {
+  //Ymap start
+  var spinner = $('.ymap-container').children('.loader');
+  var check_if_load = 0;
+  var myMapTemp, myPlacemarkTemp;
+
+
+  function init () {
+    var myMapTemp = new ymaps.Map("map", {
       center: [55.781986, 49.124811],
-      zoom: 15
-  }, {
-      searchControlProvider: 'yandex#search'
-  }),
+      zoom: 15,
+      controls: ['zoomControl', 'fullscreenControl']
+    });
 
-  // Создаём макет содержимого.
-  MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-      '<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
-  ),
+    var myPlacemarkTemp = new ymaps.Placemark([55.781986, 49.124811], {
+        balloonContent: "Здесь может быть ваш адрес",
+    }, {
+        // Опции.
+        // Необходимо указать данный тип макета.
+        iconLayout: 'default#imageWithContent',
+        // Своё изображение иконки метки.
+        iconImageHref: 'img/map-marker.png',
+        // Размеры метки.
+        iconImageSize: [32, 32],
+        // Смещение левого верхнего угла иконки относительно
+        // её "ножки" (точки привязки).
+        iconImageOffset: [-25, -50],
+    });
+    
+    myMapTemp.geoObjects.add(myPlacemarkTemp);
 
-  myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
-      hintContent: 'Наш офис',
-      balloonContent: 'Вход со двора'
-  }, {
-      // Опции.
-      // Необходимо указать данный тип макета.
-      iconLayout: 'default#image',
-      // Своё изображение иконки метки.
-      iconImageHref: 'img/map-marker.png',
-      // Размеры метки.
-      iconImageSize: [32, 32],
-      // Смещение левого верхнего угла иконки относительно
-      // её "ножки" (точки привязки).
-      iconImageOffset: [-5, -38]
-  })
+    //Получаем первый экземпляр коллекции слоев, потом первый слой коллекции
+    var layer = myMapTemp.layers.get(0).get(0);
 
+    //Решение по callback-у для определния полной загрузки карты: http://ru.stackoverflow.com/questions/463638/callback-загрузки-карты-yandex-map
+    waitForTilesLoad(layer).then(function() {
+      //Скрываем
+      spinner.removeClass('is-active');
+    });
+  }
 
-myMap.geoObjects
-  .add(myPlacemark)
+  function waitForTilesLoad(layer) {
+    return new ymaps.vow.Promise(function (resolve, reject) {
+      var tc = getTileContainer(layer), readyAll = true;
+      tc.tiles.each(function (tile, number) {
+        if (!tile.isReady()) {
+          readyAll = false;
+        }
+      });
+      if (readyAll) {
+        resolve();
+      } else {
+        tc.events.once("ready", function() {
+          resolve();
+        });
+      }
+    });
+  }
+
+  function getTileContainer(layer) {
+    for (var k in layer) {
+      if (layer.hasOwnProperty(k)) {
+        if (
+          layer[k] instanceof ymaps.layer.tileContainer.CanvasContainer
+          || layer[k] instanceof ymaps.layer.tileContainer.DomContainer
+        ) {
+          return layer[k];
+        }
+      }
+    }
+    return null;
+  }
+
+  function loadScript(url, callback){
+
+    var script = document.createElement("script");
+
+    if (script.readyState){  //IE
+      script.onreadystatechange = function(){
+        if (script.readyState == "loaded" ||
+                script.readyState == "complete"){
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else {  //Другие браузеры
+      script.onload = function(){
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  }
+
+  var ymap = function() {
+    $('.ymap-container').mouseenter(function(){
+        if (check_if_load == 0) {
+          check_if_load = 1;
+
+          spinner.addClass('is-active');
+
+          loadScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;loadByRequire=1", function(){
+            ymaps.load(init);
+          });         
+        
+        }
+      }
+    );  
+  }
+
+  $(function() {
+
+    //Map Yandex
+    ymap();
+
+  });
+
+  var player;
+  $('.video__play').on('click', function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '460',
+      width: '100%',
+      videoId: 'MZqtJ1IrRNI',
+      events: {
+        'onReady': videoPlay,
+      }
+    });
+  });
+
+  function videoPlay(event) {
+    event.target.playVideo()
   }
 });

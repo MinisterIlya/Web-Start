@@ -3,6 +3,10 @@
   $modalUserName = $_POST['modalUserName'];
   $modalUserEmail = $_POST['modalUserEmail'];
   $modalUserPhone = $_POST['modalUserPhone'];
+  
+
+
+
 
 
 // Load Composer's autoloader
@@ -13,29 +17,37 @@ require 'phpmailer/SMTP.php';
 $mail = new PHPMailer\PHPMailer\PHPMailer();
 
 try {
-    //Server settings
-    $mail->SMTPDebug = 0;                      // Enable verbose debug output
-    $mail->isSMTP();                                            // Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'ilyagusevworkmail@gmail.com';                     // SMTP username
-    $mail->Password   = 'pass';                               // SMTP password
-    $mail->SMTPSecure = 'ssl';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
-    $mail->Port       = 465;                                    // TCP port to connect to
+    $mail->SMTPDebug = 0;
+    $mail->CharSet = 'UTF-8';
+    $mail->isSMTP();     
+    $mail->Host       = 'smtp.gmail.com';
+    $mail->SMTPAuth   = true;            
+    $mail->Username   = 'ilyagusevworkmail@gmail.com';                     
+    $mail->Password   = '199922b199922';
+    $mail->SMTPSecure = 'ssl'; 
+    $mail->Port       = 465;   
 
     //Recipients
     $mail->setFrom('ilyagusevworkmail@gmail.com');
-    $mail->addAddress('uectd-99@mail.ru');     // Add a recipient
-
+    $mail->addAddress('uectd-99@mail.ru');     
     // Content
-    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->isHTML(true);                       
     $mail->Subject = 'Новая заявка с сайта';
-    $mail->Body    = "Имя пользователя: ${userName}, его телефон: ${userPhone}. Его почта: ${userEmail}";
+    $mail->Body    = "Имя пользователя: ${modalUserName}, его телефон: ${modalUserPhone}. Его почта: ${modalUserEmail}";
+    // $mail->Body    = "Имя пользователя: ${controlUserName}, его телефон: ${controlUserPhone}.";
+    // $mail->Body    = "Имя пользователя: ${footerUserName}, его телефон: ${footerUserPhone}. Его вопрос: ${footerQuestion}";
 
-    $mail->send();
-    header('Location: thanks.html');
+    if ($mail->send()) {
+      echo "ок!";
+  } else {
+      echo "Письмо не отправлено. Код ошибки: {$mail->ErrorInfo}";
+  }
 } catch (Exception $e) {
     echo "Письмо не отправлено, есть ошибка. Код ошибки: {$mail->ErrorInfo}";
 }
+
+
+
+
 
 ?>

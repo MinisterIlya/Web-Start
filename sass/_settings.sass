@@ -56,5 +56,74 @@ body
         height: 2px
         background-color: $primary
         margin: 0 10px
+.link-ancor
+  &::before
+    content: ''
+    display: block
+    height: 90px
+    margin-top: -90px
 img
   max-width: 100%
+
+
+.ymap-container 
+  position: relative
+  margin: 0 auto
+  margin-bottom: 4rem
+  width: 90%
+  max-width: 66.071rem
+  height: 33.214rem
+  overflow: hidden
+  cursor: pointer
+  background: url('../img/yandex-before-load-marker.png') #ffffff no-repeat
+  background-position: center center
+  background-size: cover
+  box-shadow: 0 0 2em  0 rgba(0,0,0,.2)
+.map 
+  position: relative
+  z-index: 7
+  margin: auto
+  margin-bottom: 4rem
+  width: 100%
+  max-width: 66.071rem
+  height: 33.214rem
+  cursor: pointer
+  background-color: transparent
+.loader 
+  position: absolute
+  z-index: 15
+  top: -100%
+  left: 0
+  box-sizing: border-box
+  width: 100%
+  height: 100%
+  overflow: hidden
+  color: #000000
+  transition: opacity .7s ease
+  opacity: 0
+  background-color: rgba(0,0,0,.55)
+
+ 
+.loader:after,
+.loader:before 
+  box-sizing: border-box
+
+ 
+.loader.is-active 
+  top: 0
+  opacity: 1
+
+ 
+.loader-default:after 
+  position: absolute
+  top: calc(50% - 24px)
+  left: calc(50% - 24px)
+  width: 48px
+  height: 48px
+  content: ''
+  animation: rotation 1s linear infinite
+  border: solid 8px #ffffff
+  border-left-color: transparent
+  border-radius: 50%
+
+
