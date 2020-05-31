@@ -48,14 +48,8 @@
     color: $light
     text-decoration: none
     z-index: 3
-    &::after
-      content: ''
-      background: url(../img/arrow-down.svg) no-repeat center
-      width: 30px
-      height: 30px
-      border: 1.5px solid $primary
-      border-radius: 50%
-      margin-left: 12px
+    &:hover
+      cursor: default
   &__content
     position: relative
     max-width: 47.85rem
@@ -90,7 +84,29 @@
       width: 51px
       height: 1px
       background-color: $primary
+      display: block
       margin-left: 8px
+      transition: 1s
+    &:hover
+      &::after
+        width: 70px
+.scroll-down
+  &__text
+    display: flex
+    align-items: center
+    &::after
+      content: ''
+      background: url(../img/arrow-down.svg) no-repeat center
+      width: 30px
+      height: 30px
+      border: 2px solid $primary
+      border-radius: 50%
+      margin-left: 12px
+      transition: 0.5s
+    &:hover
+      cursor: pointer
+      &::after
+        transform: rotate(360deg)
 .title 
   margin: 0
   font-family: 'Yeseva One', cursive

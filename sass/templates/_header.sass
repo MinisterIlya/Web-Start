@@ -5,7 +5,7 @@
   width: 100%
   z-index: 99
   background-color: $dark
-  padding: 24px 0
+  padding: 23px 0
   font-family: 'Futura Demi', sans-serif
 .menu
   display: flex
@@ -17,6 +17,16 @@
   &__link
     text-decoration: none
     color: $primary
+    font-family: 'Futura Demi', sans-serif
+    &::after
+      content: ''
+      display: block
+      background-color: $primary
+      height: 1px
+      width: 0
+    &:hover
+      &::after
+        width: 100%
 .nav
   &__item
     text-decoration: none
@@ -31,9 +41,29 @@
   color: $primary
 .contacts
   &__phone
+    position: relative
     margin-right: 25px
     text-decoration: none
-    border-bottom: 1px solid $primary
+    font-family: 'Futura Demi', sans-serif
+    &::after
+      position: absolute    
+      top: 15px
+      content: ''
+      display: block
+      width: 100%
+      height: 1px
+      background-color: $primary
+      transition: 0.4s
+    &:hover
+      &::after
+        position: absolute    
+        top: 15px
+        content: ''
+        display: block
+        height: 1px
+        background-color: $primary
+        width: 0%
+      
   &__button
-    padding: 11px 20px
-    
+    width: 11.5rem
+    height: 2.643rem

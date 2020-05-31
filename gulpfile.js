@@ -45,13 +45,14 @@ function buildCSS(done) {
 }
 
 function buildJS(done) {
-  src(['js/**/*.js', '!js/**/*.min.js'])
-    .pipe(minify({
+  src('js/**/*.js')
+  .pipe(minify({
     ext:{
-        min:'.js'
+      min:'.min.js'
     },
-    }))
-    .pipe(dest('dist/js/'))
+    ignoreFiles: ['*.min.js']
+  }))
+  .pipe(dest('dist/js/'))
   src('js/**/*.min.js')
     .pipe(dest('dist/js/'))
   done();

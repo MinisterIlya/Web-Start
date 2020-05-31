@@ -41,10 +41,11 @@
     margin-bottom: 3.6rem
   &__button
     margin: auto
-    padding: 1.285rem 4.785rem
+    width: 14.286rem
+    height: 3.642rem
   &__menu
     background-color: $dark
-    padding: 4.285rem 0
+    padding: 3.385rem 0
   &__text
     margin: auto
     text-transform: uppercase
@@ -59,6 +60,9 @@
   &__phone
     text-decoration: none
     color: $primary
+    transition: 0.4s
+    &:hover
+      color: darken($primary, 15%)
   &__links
     margin-top: 1.857rem
     display: flex
@@ -75,6 +79,9 @@
     cursor: pointer
     margin-right: 1rem
     margin-bottom: 3.071rem
+    transition: 0.4s
+    &:hover
+      background-color: darken($primary, 15%)
   &__content
     display: flex
     flex-direction: column

@@ -8,15 +8,22 @@
     background-color: $primary
     color: $light
     box-shadow: 0px 5px 15px rgba($primary, 0.2);
-    transition: box-shadow 0.2s
+    transition: 0.4s
+    border: 1px solid $primary
     &:hover
-      box-shadow: none
-  &--outline
+      cursor: pointer
+      background-color: $dark
+      border: 1px solid $light
+      color: $primary
+  &--outline 
     border: 1px solid $light
     background-color: transparent
     color: $light
-  &:hover
-    cursor: pointer
+    transition: 0.4s
+    &:hover
+      cursor: pointer
+      background-color: $dark
+      color: $primary
 .hero__button
   margin-right: 1.28rem
   .button--primary, .button--outline
@@ -39,10 +46,12 @@
     color: $light
     &::placeholder
       color: $light
+      opacity: 1
   &--dark
     color: $dark
     &::placeholder
       color: $dark
+      opacity: 1
 .policy
   &__checkbox
     opacity: 0
@@ -66,22 +75,37 @@
     &--center
       justify-content: center
 .scrollup
+  // position: relativ
   width: 40px
   height: 40px
-  opacity: 0.3
+  opacity: 0.4
   position: fixed
   bottom: 50px
   right: 15px
   display: none
-  background: url('../img/icon_top.png') no-repeat
+  background: $primary center no-repeat
+  border-radius: 50%
   transition: 0.5s
   &:hover
-    opacity: 0.7
+    opacity: 0.9
+  &::after
+    content: ''
+    width: 40px
+    height: 40px
+    opacity: 1
+    position: fixed
+    bottom: 50px
+    right: 15px
+    background: url('../img/fantasies/arrow-next.svg') no-repeat center
+    display: block
+    transform: rotate(-90deg)
+    
 div
   &.invalid
     width: 100%
     color: tomato
     position: absolute
+    margin-top: 5px
   
 .invalid
   &__input

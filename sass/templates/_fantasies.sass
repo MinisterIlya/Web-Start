@@ -1,0 +1,143 @@
+.fantasies
+  max-height: 61.714rem
+  position: relative
+  background: $dark url('../img/fantasies/bg-img.jpg') no-repeat center / cover
+  color: $light
+  &__caption
+    position: relative
+    font-family: 'Yeseva One'
+    font-style: normal
+    font-weight: normal
+    font-size: 1.928rem
+    line-height: 2.642rem
+    text-transform: uppercase
+    color: $primary
+    margin-bottom: 3.357rem
+  &::before
+    content: ''
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    background: linear-gradient(120.96deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.9) 100%)
+  &__img
+    display: inline-block
+    margin-bottom: 2.85rem
+    max-width: 23.285rem
+  &__styles
+    padding-left: 0
+    margin-top: 3.785rem
+  &__word
+    display: block
+.styles
+  display: flex
+  flex-direction: column
+  flex-wrap: wrap
+  position: relative
+  max-width: 31.7rem
+  list-style: none
+  &__item
+    cursor: pointer
+    position: relative
+    display: inline-block
+    font-style: normal
+    font-weight: 500
+    font-size: 1.7rem
+    line-height: 1.428rem
+    margin-bottom: 2rem
+    transition: 0.3s
+    &::after
+      content: ''
+      margin-top: 4px
+      position: absolute
+      height: 1px
+      width: 0%
+      background-color: $primary
+      display: block
+      transition: 0.3s
+    &:hover
+      color: $primary
+      &::after
+        content: ''
+        position: absolute
+        transition: 0.3s
+        margin-top: 4px
+        height: 1px
+        width: 50%
+        background-color: $primary
+        display: block
+    &--active
+      position: relative
+      color: $primary
+      &::after
+        content: ''
+        margin-top: 4px
+        position: absolute
+        height: 1px
+        width: 50%
+        background-color: $primary
+        display: block
+        transition: 0.3s
+.content
+  position: relative
+  display: flex
+  &__left
+    position: relative
+    top: -7rem
+  &__right
+    position: relative
+    top: -12rem
+    margin-left: 3.071rem
+.swiper
+  &.fantasies__img
+    width: 100%
+    display: block
+  &-pagination
+    &-bullet
+      background-color: rgba($light, 0.3)
+      &-active
+        background-color: $light
+  &-container
+    width: 100%
+    height: 100%
+    &__pro
+  &-slide
+    &__pro
+      opacity: 0
+      display: flex
+      flex-wrap: wrap
+    &-active
+      opacity: 1
+    &__img
+      max-height: 300px
+      width: 100%
+    &__pro
+      position: relative
+      display: flex
+      flex-wrap: wrap
+      align-items: center
+      justify-content: flex-end
+  &-button
+    &-next__pro,
+    &-prev__pro
+      cursor: pointer
+      position: absolute
+      z-index: 99
+      top: 40%
+      width: 36px
+      height: 36px
+      background-size: 36px
+      background: $primary
+      border-radius: 50%
+    &-next__pro
+      left: 89%
+      background: $primary url('../img/fantasies/arrow-next.svg') no-repeat center
+    &-prev__pro
+      left: 4%
+      background: $primary url('../img/fantasies/arrow-prev.svg') no-repeat center
+
+
+
+
+    

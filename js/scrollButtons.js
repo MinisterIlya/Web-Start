@@ -1,10 +1,17 @@
 $(document).ready(function () {
-  $('.hero__scroll-down').click(function() {
+  $('.scroll-down__text').click(function() {
     $('html, body').animate({scrollTop: $('.header').height() + $('.hero').height() }, 600)
     return false
   })
   $('.logo__link').click(function () {
     $('html, body').animate({scrollTop: 0}, 600)
+  })
+
+  $('.nav').on('click', 'a', function(event) {
+    event.preventDefault();
+    var id = $(this).attr('href'),
+        top = $(id).offset().top;
+    $('body, html').animate({scrollTop: top}, 1000)
   })
 
   $(window).scroll(function() {

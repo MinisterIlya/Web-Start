@@ -4,9 +4,13 @@
   background: $light url('../img/bg-lines.svg') center
   .card
     margin-top: 2rem
+    width: 100%
+    box-shadow: 0 10px 50px rgba($dark, 0.04)
     &__text
       margin: 0
       padding: 1.5rem
+      padding-right: 0.2rem
+      box-shadow: none
     &__title
       width: 100%
       display: flex
@@ -42,7 +46,7 @@
     margin-right: 2px
   .days,
   .area
-    padding: 0.15rem 1.2rem
+    padding: 0rem 1.2rem
     padding-right: 1rem
     min-width: 135px
     display: flex
@@ -65,6 +69,7 @@
     &-title
       &__description
         max-width: 25.714rem
+        color: $shady
   .feadback
     &__text
       font-size: 1.071rem

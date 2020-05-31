@@ -1,4 +1,9 @@
 .control
+  &__input
+    color: $dark
+    &::placeholder
+      color: $dark
+      opacity: 1
   &__form
     display: flex
     flex-wrap: wrap
@@ -16,7 +21,7 @@
     margin-bottom: 4.428rem
     position: relative
     max-width: 58.357rem
-    min-height: 31rem
+    height: 31rem
     background: $dark url('../img/video-mask.jpg') center no-repeat
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15)
     &::before
@@ -35,8 +40,9 @@
     margin: auto
     margin-bottom: 4.285rem
     text-align: center
-    font-size: 1.428rem
+    font-size: 20px
     line-height: 2.4rem
+    color: $shady
     &::before
       display: block
       margin: auto
@@ -54,7 +60,10 @@
     margin-bottom: -7px
     color: $secondary
   &__button
-    padding: 1.285rem 4.785rem
+    width: 14.286rem
+    height: 3.643rem
+  .button
+    font-size: 1.071rem
 .video
   &__play
     position: relative

@@ -1,30 +1,3 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//   const modal = document.querySelector('.modal'),
-//         // modalContainer = documen.querySelector('.modal-conteiner'),
-//         modalDialog = document.querySelector('.modal__dialog'),
-//         modalBtn = document.querySelectorAll('[data-toggle=modal]'),
-//         closeBtn = document.querySelector('.modal__close');
-
-//   const switchModal = () => {
-//     modal.classList.toggle('modal--visible');    
-//   };
-
-//   modalBtn.forEach(element => {
-//     element.addEventListener('click', switchModal);
-//   });
-
-//   closeBtn.addEventListener('click', switchModal);
-
-//   document.addEventListener('keyup', function(key) {
-//     if (key.keyCode === 27) modal.classList.remove('modal--visible');
-//   })
-
-//   modal.addEventListener('click', function(e) {
-//     if (e.target == this) modal.classList.remove('modal--visible');
-//   })
-
-// });
-
 $(document).ready(function () {
   let modal = $('.modal'),
       modalBtn = $('[data-toggle=modal]'),
@@ -33,6 +6,8 @@ $(document).ready(function () {
 
   modalBtn.on('click', function() {
     modal.toggleClass('modal--visible');
+    ym('64339864', 'reachGoal', 'button'); 
+    return true;      
   });
   closeBtn.on('click', function() {
     modal.removeClass('modal--visible');
@@ -51,7 +26,7 @@ $(document).ready(function () {
     if(event.target == this) thanksModal.removeClass('thanks-modal--visible');
   });
 
-  var mySwiper = new Swiper ('.swiper-container', {
+  var mySwiper = new Swiper ('.swiper-container__projects', {
     loop: true,
     pagination: {
       el: '.swiper-pagination',
@@ -66,7 +41,7 @@ $(document).ready(function () {
   var mySecondSwiper = new Swiper ('.swiper-container__steps', {
     loop: true,
     pagination: {
-      el: '.swiper-pagination__steps',
+      el: '.swiper-pagination--second',
       type: 'bullets',
       clickable: true,
     },
@@ -76,6 +51,27 @@ $(document).ready(function () {
     },
   });
 
+  
+  var myThirdSwiper = new Swiper ('.swiper-container__pro', {
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next__pro',
+      prevEl: '.swiper-button-prev__pro',
+    },
+  });
+
+  // if ($(window).width() > 760) {
+  //   $('.swiper-container__pro').css('display', 'none')
+  // }
+  // $(window).on('resize', function() {
+  //   if ($(window).width() > 760) {
+  //     $('.swiper-container__pro').css('display', 'none')
+  //   } else if ($(window).width() <= 760) {
+  //     $('.swiper-container__pro').css('display', 'flex')
+  //   }
+  // })
+
+
   let next = $('.swiper-button-next'),
       prev = $('.swiper-button-prev'),
       bullets = $('.swiper-pagination'),
@@ -83,10 +79,10 @@ $(document).ready(function () {
       bulletsSecond = $('.swiper-pagination--second');
 
   next.css('left', prev.width() + bullets.width() + 20);
-  bullets.css('left', prev.width() + 10);
+  bullets.css('left', prev.width() + 15);
 
   nextSecond.css('left', prev.width() + bulletsSecond.width() + 20);
-  bulletsSecond.css('left', prev.width() + 10);
+  bulletsSecond.css('left', prev.width() + 15);
   
 
   let slideIndex = 1,
@@ -209,9 +205,11 @@ $(document).ready(function () {
         url: "send.php",
         data: $(form).serialize(),
         success: function (response) {
-          $("form")[2].reset();
+          $("form")[3].reset();
           modal.removeClass('modal--visible');
           thanksModal.addClass('thanks-modal--visible');       
+          ym('64339864', 'reachGoal', 'form'); 
+          return true;      
         }
       });
     }
@@ -274,8 +272,10 @@ $(document).ready(function () {
         url: "footer.php",
         data: $(form).serialize(),
         success: function (response) {
-          $("form")[1].reset();
+          $("form")[2].reset();
           thanksModal.addClass('thanks-modal--visible');       
+          ym('64339864', 'reachGoal', 'form'); 
+          return true;      
         }
       });
     }
@@ -334,7 +334,77 @@ $(document).ready(function () {
         data: $(form).serialize(),
         success: function (response) {
           $("form")[0].reset();
+          thanksModal.addClass('thanks-modal--visible');
+          ym('64339864', 'reachGoal', 'form'); 
+          return true;      
+        }
+      });
+    }
+  });
+  $('.pro__form').validate({
+    errorClass: "invalid",
+    validClass: "success",
+    errorElement: "div",  
+    highlight: function(element) {
+      $(element).addClass("invalid__input");
+      if ("checkbox" == $(element).attr("type")) {
+        $("#pro__policy-label").addClass("invalid__checkbox");
+      }
+    },
+    unhighlight: function(element) {
+      $(element).removeClass("invalid__input");
+      if ("checkbox" == $(element).attr("type")) {
+        $("#pro__policy-label").removeClass("invalid__checkbox");
+      }
+    },
+    errorPlacement: function(even, types) {
+      if ("checkbox" == types.attr("type")) {
+        types.next("label").append(even);
+      } else {
+        even.insertAfter($(types))
+      }
+    },
+    rules: {
+      proPolicyCheckbox: {
+        required: true,
+      },
+      proUserName: {
+        required: true,
+        minlength: 2,
+        maxlength: 15,
+      },
+      proUserPhone: {
+        required: true,
+        minlength: 16,
+      },
+      proUserEmail: {
+        required: true,
+        email: true,
+      }
+    },
+    messages: {
+      proPolicyCheckbox: "",
+      proUserName: {
+        required: "Заполните поле",
+        minlength: "Имя не должно быть короче 2 букв",
+        maxlength: "Имя не должно быть длинее 15 букв"
+      }, 
+      proUserPhone: "Заполните поле",
+      proUserEmail: {
+        required: "Обязательно укажите email",
+        email: "Введите в формате: name@domain.com"
+      }
+    },
+    submitHandler: function(form) {
+      $.ajax({
+        type: "POST",
+        url: "pro.php",
+        data: $(form).serialize(),
+        success: function (response) {
+          $("form")[3].reset();
           thanksModal.addClass('thanks-modal--visible');       
+          ym('64339864', 'reachGoal', 'form'); 
+          return true;      
         }
       });
     }
@@ -357,7 +427,7 @@ $(document).ready(function () {
       zoom: 15,
       controls: ['zoomControl', 'fullscreenControl']
     });
-
+    myMapTemp.behaviors.disable('scrollZoom');
     var myPlacemarkTemp = new ymaps.Placemark([55.781986, 49.124811], {
         balloonContent: "Здесь может быть ваш адрес",
     }, {
@@ -456,10 +526,8 @@ $(document).ready(function () {
   }
 
   $(function() {
-
     //Map Yandex
     ymap();
-
   });
 
   var player;
@@ -477,4 +545,39 @@ $(document).ready(function () {
   function videoPlay(event) {
     event.target.playVideo()
   }
+
+  let content = $('.content'),
+      stylesItem = $('.styles__item');
+
+  $(content).each(function (index) {
+    if (index != 0) {
+      $(this).hide();
+    }
+  })
+  for(let i = 0; i < stylesItem.length; i++) {
+  
+  }
+  $(stylesItem).on('click', function (event) {
+    
+    let index = $(stylesItem).index(event.target);
+
+    $('.styles__item--active').toggleClass('styles__item--active');
+    $(this).toggleClass('styles__item--active');
+
+    $(content).each(function (ind) {
+      $(this).fadeOut(500).delay(490);
+      if (ind == index) {
+        $(this).fadeIn(500)
+      }
+    })
+  });
+  if ($(window).width() <= 760) {
+    $('.control__input').removeClass('.input--dark');
+  }
+  $(window).on('resize', function() {
+    if ($(window).width() <= 760) {
+      $('.control__input').toggleClass('.input--dark');
+      $('.control__input').toggleClass('.input--light');
+    }
+  })
 });
